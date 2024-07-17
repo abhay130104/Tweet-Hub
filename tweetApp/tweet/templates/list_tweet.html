@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Tweet-App
+{% endblock title %}
+
+{% block content %}
+<h1 class="text-center mt-4">Welcome to our Tweet App</h1> 
+
+<a class="btn btn-primary mb-4" href="{% url 'create_tweet' %}">
+    New Tweet
+</a>
+
+<div class="row">
+    {% for tweet in tweets %}
+    <div class="col-md-4 mb-4">
+        <div class="card text-light">
+            {% if tweet.photo %}
+            <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Tweet Photo">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ tweet.user.username }}</h5>
+                <p class="card-text">{{ tweet.text }}</p>
+                {% if tweet.user == user %}
+                <a href="{% url 'edit_tweet' tweet.id %}" class="btn btn-primary">Edit</a>
+                <a href="{% url 'delete_tweet' tweet.id %}" class="btn btn-danger">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

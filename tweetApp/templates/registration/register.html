@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Register
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2>Register</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" class="form">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btn btn-primary btn-block">Register</button>
+                    </form>
+                    <p class="text-center mt-3">
+                        Already have an account? 
+                        <a href="{% url 'login' %}" class="text-primary">Login Here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
